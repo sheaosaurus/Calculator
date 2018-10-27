@@ -1,0 +1,75 @@
+:root {
+
+
+}
+
+
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html,
+body {
+	min-height: 100vh;
+	font-size: 16px;
+}
+
+.header__nav {
+	height: 50px;
+	width: 100vw;
+	background-color: black;
+}
+
+.wrapper {
+	height: 100vh;
+	width: 100vw;
+	display: grid;
+	justify-content: center;
+	align-content: center;
+}
+
+.container {
+	width: 80vw;
+	height: 70vh;
+}
+
+.container__display {
+	display: grid;
+	grid-template-rows: 1fr;
+	grid-template-columns: 1fr 4fr;
+	grid-column-gap: 1rem;
+	margin-bottom: 1rem;
+
+}
+
+ .display {
+	display: grid;
+	justify-content: end; 
+	align-content: end;
+}
+
+.display--view {
+	font-size: 3rem;
+	overflow: hidden;
+	text-align: right;
+	float: left;
+}
+
+
+.main__buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(4, 1fr);
+	grid-gap: 1rem 1rem;
+}
+
+.buttons {
+	padding: 1.5rem 1.5rem;
+	border: 1px solid black;
+}
+
+.display__button {	
+	
+}
