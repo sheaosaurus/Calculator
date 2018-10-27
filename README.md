@@ -1,10 +1,10 @@
-#Simple Javascript Calculator
+Simple Javascript Calculator
 * At this time, the calculator does not perform mathematical equations.
 This project is a simple web app calculator that calculates mathematical functions based on user input and will eventually be able to consider the order of operations.
 Just having completed a course on modular Javascript, I thought it would be interesting to implement what I learned while building this calculator. 
 
 
-##Things to Complete
+Things to Complete
 
 	
 JavaScript
