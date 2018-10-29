@@ -3,6 +3,9 @@
 //*******************//
 const displayCtrl = (function(){
 
+		const display = document.querySelector('[data-view=display--view]'),
+		clearButton = document.querySelector('[data-clr]')
+		
 		return {
 				
 				//Function to determine display type

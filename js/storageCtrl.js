@@ -16,8 +16,8 @@ const storageCtrl = (function(){
 
 	//Public Methods
 	return {
-		emptyState: function(){
-			return  storage.emptyStorage;
+		getEmptyStorage: function(){
+			return storage.emptyStorage;
 		},
 		updateStorageValue: function(value){
 			storage.emptyStorage = value;
@@ -67,7 +67,9 @@ const storageCtrl = (function(){
 			storageCtrl.updatePrevType(""),
 			storageCtrl.setCurrDisplay(0),
 			storageCtrl.clearCalcValues(),
-			storageCtrl.clearTempValues()
+			storageCtrl.clearTempValues(),
+			storageCtrl.clearCalcValues(),
+			storageCtrl.setSolved(0)
 		}, 
 		setSolved: function(value){
 			storage.solved = value;

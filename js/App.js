@@ -1,17 +1,12 @@
-const buttons = document.querySelectorAll('[data-type]'),
-displayContainer = document.querySelector('[data-view=display]'),
-display = document.querySelector('[data-view=display--view]'),
-calculateButton = document.querySelector('[data-calc=cal]'),
-clearButton = document.querySelector('[data-clr]')
-
-
-
-
-
 //*******************//
 //  App Control  //
 //*******************//
 const App = (function(typeHandler, storageCtrl, displayCtrl, calculateCtrl){
+
+	const buttons = document.querySelectorAll('[data-type]'),
+	displayContainer = document.querySelector('[data-view=display]'),
+	calculateButton = document.querySelector('[data-calc=cal]'),
+	clearButton = document.querySelector('[data-clr]')
 
 	//Function to load event listener
 	function loadEventListener(){
@@ -24,21 +19,20 @@ const App = (function(typeHandler, storageCtrl, displayCtrl, calculateCtrl){
 	}
 
 	function delegateClick(e){
-		//Setting type from data-type
-		let type = e.target.dataset.type;
-		let btnValue = e.target.textContent;
-		//Get previous type of input entered
-		let prevType = storageCtrl.getPrevType();
-		//Sent data to typeCtrl function to be evaluated, returns boolean
-		let toBeCal = storageCtrl.getTempValues();
+		let type = e.target.dataset.type,
+		btnValue = e.target.textContent,
+		prevType = storageCtrl.getPrevType(),
+		toBeCal = storageCtrl.getTempValues();
 
+		//Returns boolean if input-type is illegal
 		let illegalType = typeCtrl.evalType(type, prevType, btnValue,toBeCal)
 
 		if(illegalType){
 			return false;
 		}
-		//Get empty storage boolean
-		let emptyStorage = storageCtrl.emptyState();
+		
+
+		let emptyStorage = storageCtrl.getEmptyStorage();
 		//Get dataType of input
 		let dataType = typeCtrl.typeClicked(emptyStorage, type, prevType, btnValue);
 		//Send input type to displayCtrl to update display
@@ -51,6 +45,7 @@ const App = (function(typeHandler, storageCtrl, displayCtrl, calculateCtrl){
 		storageCtrl.updatePrevType(type);
 		if(type === "opp"){
 			if(type === prevType){
+				//If input is opp then another opp value, remove initial opp from tempValues.
 				storageCtrl.reduceTempValues();
 			}
 			storageCtrl.setValuesToCalculate()
@@ -59,16 +54,13 @@ const App = (function(typeHandler, storageCtrl, displayCtrl, calculateCtrl){
 		storageCtrl.addTempValues(btnValue);
 		//Set current display
 		storageCtrl.setCurrDisplay(currDisplay);
-
-
-
 		e.preventDefault()
 	}
 
 	function calculateEval(e){
 
 		let prevType = storageCtrl.getPrevType();
-		let emptyStorage = storageCtrl.emptyState();
+		let emptyStorage = storageCtrl.getEmptyStorage();
 		// Checking boolean of datatypes when calc button pressed 	
 		let illegalEqual = typeCtrl.evalEqual(prevType, emptyStorage);
 		if(illegalEqual){
@@ -89,13 +81,8 @@ const App = (function(typeHandler, storageCtrl, displayCtrl, calculateCtrl){
 			let reformatedStr = calculateCtrl.reformat(calculateStr);
 			solvedEqu = calculateCtrl.solveStr(reformatedStr);
 		}
-
-
-
 		storageCtrl.setSolved(solvedEqu);
 		displayCtrl.updateDisplay(solvedEqu)
-
-
 		e.preventDefault()
 	}
 	
@@ -103,7 +90,6 @@ const App = (function(typeHandler, storageCtrl, displayCtrl, calculateCtrl){
 		let btnValue = clearButton.textContent;
 		let type = e.target.dataset.clr;
 		let tempVales = storageCtrl.getTempValues();
-		console.log(tempVales)
 
 		if(btnValue === "AC"){
 			//Function to clear all attributes

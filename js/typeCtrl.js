@@ -32,14 +32,11 @@ const typeCtrl = (function(){
 		},
 
 		evalType: function(type, prevType, btnValue, toBeCal){
-			//Decimal Eval - If decimal was last type pressed and prevType was decimal and the current display 
-			//has a decimal, return true and do not let user input another decimal on the screen.
+			//Decimal Eval - If decimal was last type pressed and prevType was decimal and the current display has a decimal, return true and do not let user input another decimal on the screen.
 			if(type === 'dec' && (prevType === 'dec' ||  display.textContent.includes('.'))){
 				return true;
 			}
-			//Opperand Eval - If operand was last type pressed and prevType was opperand do not let user press
-			//same opperand. However, if user pressed different opperand, skip statement (** incase user puts in
-			//incorrrect opperand)
+			//Opperand Eval - If operand was last type pressed and prevType was opperand do not let user press same opperand. However, if user pressed different opperand, allow user to move forward.
 			if((type === 'opp' && prevType === 'opp') && display.textContent.includes(btnValue)){
 				return true;
 			}
