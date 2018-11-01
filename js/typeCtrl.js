@@ -3,6 +3,8 @@
 //*******************//
 const typeCtrl = (function(){
 	
+	const display = document.querySelector('[data-view=display--view]');
+
 	return {
 		typeClicked: function(emptyStorage, type, prevType, btnValue){
 			//If storage-empty is true, add new value to calc array and set st-emp to false

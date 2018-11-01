@@ -15,7 +15,30 @@ const App = (function(typeHandler, storageCtrl, displayCtrl, calculateCtrl){
 		}),
 		calculateButton.addEventListener('click', calculateEval),
 		clearButton.addEventListener('click', clearEval)
-		
+		document.addEventListener('keypress', (e) => {
+			e.preventDefault();
+			let keyName = event.key
+			let nums = /[0-9]/,
+			opp = /[+-/*.]/,
+			equal = /=|Enter/,
+			clear = /[c]/
+			if(nums.test(keyName)){
+				buttons.forEach(function(button){
+					if(button.dataset.num === keyName){
+						button.click();
+					}
+				})
+			}
+			if(opp.test(keyName)){
+				buttons.forEach(function(button){
+					if(button.dataset.opp === keyName){
+						button.click();
+					}
+				})
+			}
+			if(equal.test(keyName)) calculateButton.click();			
+			if(clear.test(keyName)) clearButton.click();
+		})
 	}
 
 	function delegateClick(e){
